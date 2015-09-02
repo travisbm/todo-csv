@@ -1,9 +1,11 @@
-require 'csv'
+require 'csv'  # => true
 
 class Todo
 
   def initialize(file_name)
     @file_name = file_name
+    @todos = CSV.read(@file_name, {headers: true})
+
     # You will need to read from your CSV here and assign them to the @todos variable. make sure headers are set to true
   end
 
@@ -13,7 +15,7 @@ class Todo
 
       puts "---- TODO.rb ----"
 
-      view_todos 
+      view_todos
 
       puts
       puts "What would you like to do?"
@@ -35,7 +37,33 @@ class Todo
     @todos
   end
 
-  private
+  def add_todo
+    puts "Name of Todo > "
+    @todos << [get_input, "no"]
+  end
+
+  def mark_todo
+    puts "Which todo have you finished?"
+    num = get_input.to_i
+    @todos[num - 1]["completed"] = "yes"
+  end
+
+  def view_todos
+    puts "Unfinished"
+    @todos.each_with_index do |todo, index|
+      if todo["completed"] == "no"
+      puts "#{index + 1}) #{todo["name"]}"
+      end
+    end
+    puts "Completed"
+    @todos.each_with_index do |todo, index|
+      if todo["completed"] == "yes"
+      puts "#{index + 1}) #{todo["name"]}"
+      end
+    end
+  end
+
+  private        # => Todo
   def get_input
     gets.chomp
   end
