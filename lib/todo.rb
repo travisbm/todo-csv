@@ -42,6 +42,7 @@ class Todo
   def add_todo
     puts "Name of Todo > "
     @todos << [get_input, "no"]
+    save!
   end
 
   def mark_todo
