@@ -61,7 +61,7 @@ class Todo
   def delete_todo
     puts "Which todo would you like to delete?"
     num = get_input.to_i
-    @todos.delete(num)
+    @todos.delete(num - 1)
   end
 
   def view_todos
