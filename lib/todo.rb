@@ -19,13 +19,15 @@ class Todo
 
       puts
       puts "What would you like to do?"
-      puts "1) Exit 2) Add Todo 3) Mark Todo As Complete"
+      puts "1) Exit 2) Add Todo 3) Mark Todo As Complete 4) Change todo name 5) Delete"
       print " > "
       action = gets.chomp.to_i
       case action
       when 1 then exit
       when 2 then add_todo
       when 3 then mark_todo
+      when 4 then change_todo_name
+      when 5 then delete_todo
       else
         puts "\a"
         puts "Not a valid choice"
@@ -46,6 +48,20 @@ class Todo
     puts "Which todo have you finished?"
     num = get_input.to_i
     @todos[num - 1]["completed"] = "yes"
+  end
+
+  def change_todo_name
+    puts "Which todo name would you like to change?"
+    num = get_input.to_i
+    puts "What would you like to change the name too?"
+    name = get_input
+    @todos[num - 1]["name"] = name
+  end
+
+  def delete_todo
+    puts "Which todo would you like to delete?"
+    num = get_input.to_i
+    @todos.delete(num)
   end
 
   def view_todos
