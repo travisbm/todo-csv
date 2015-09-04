@@ -74,7 +74,7 @@ class TodoTest < MiniTest::Test
     todo_setup # Given
     $input.push('1')
     @todo.delete_todo
-    assert_equal("finish homework,no\n", @todo.todos[0].to_s)
+    assert_equal("", @todo.todos[0].to_s)
   end
 end
 
